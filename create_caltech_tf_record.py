@@ -48,8 +48,10 @@ def GetClassID(class_label):
     NEVER use index number 0, for tensorflow use 0 as a placeholder
     
     """
-    if class_label.lower() == 'car':
+    if class_label.lower() == 'person':
         return 1
+    elif class_label.lower() == 'people':
+        return 2
     else:
         return None
 
