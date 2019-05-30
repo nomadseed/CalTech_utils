@@ -10,7 +10,12 @@ annopath='D:/Private Manager/Personal File/uOttawa/Lab works/2019 summer/caltech
 
 all_obj = 0
 data = {}
-for dname in sorted(glob.glob(os.path.join(annopath,'*train'))):#set*
+
+folders=[os.path.join(annopath,'set'+str(i).zfill(2)) for i in range(1,2)] # debug set
+#folders=[os.path.join(annopath,'set'+str(i).zfill(2)) for i in range(6)] # training set
+#folders=[os.path.join(annopath,'set'+str(i).zfill(2)) for i in range(6,11)] # testing set
+
+for dname in folders:#set[00-09]
     set_name = os.path.basename(dname)
     for anno_fn in sorted(glob.glob('{}/*.vbb'.format(dname))):#*.vbb
         vbb = loadmat(anno_fn)
@@ -58,6 +63,9 @@ for dname in sorted(glob.glob(os.path.join(annopath,'*train'))):#set*
                     
                     anno={}                    
                     anno['label'] = str(objLbl[objid])
+                    if anno['label']!= 'person':
+                        continue
+                    
                     anno['category']=''
                     anno['id']=objid
                     anno['shape']=['box',1]
