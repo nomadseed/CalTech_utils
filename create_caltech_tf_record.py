@@ -50,9 +50,14 @@ def GetClassID(class_label):
     """
     if class_label.lower() == 'person':
         return 1
-    elif class_label.lower() == 'people':
-        return 2
+# =============================================================================
+#     elif class_label.lower() == 'people':
+#         return 2
+#     elif class_label.lower() == 'person-fa':
+#         return 3
+# =============================================================================
     else:
+        raise ValueError('unexpected label: {}'.format(class_label.lower()))
         return None
 
 
